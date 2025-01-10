@@ -5,7 +5,7 @@ from bibliothecaire.models import Media
 
 def listemedias(request):
     medias = Media.objects.all()
-    return render(request, 'medias/lists.html',
+    return render(request, 'media/listsMedia.html',
                   {'medias': medias})
 
 
@@ -18,11 +18,11 @@ def ajoutmedia(request):
             media.type= creationmedia.cleaned_data['type']
             media.save()
             medias = Media.objects.all()
-            return render(request, 'medias/lists.html',
+            return render(request, 'media/listsMedia.html',
                           {'medias': medias})
     else:
         creationmedia = Creationmedia()
         return render(request,
-                      'medias/ajoutmedia.html',
+                      'media/ajoutmedia.html',
                       {'creationMedia': creationmedia}
                       )
