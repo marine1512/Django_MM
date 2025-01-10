@@ -1,0 +1,9 @@
+<body>
+    <div class="book">
+        <h1>Listes des Medias</h1>
+            {% for media in medias %}
+            <li> {{ media.id }} : <u>Titre</u> : {{ media.nom }} | <u>Auteur</u> : {{ media.type }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+</body>

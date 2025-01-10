@@ -1,0 +1,10 @@
+<body>
+    <div class="book">
+        <h1>Ajouter un Media</h1>
+        <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ creationMedia }}
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+</body>
