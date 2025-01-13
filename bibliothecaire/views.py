@@ -29,7 +29,7 @@ def ajoutmedia(request):
                       )
 
 def listemembres(request):
-    membres = Membre.objects.all()
+    membre = Membre.objects.all()
     return render(request, 'membre/membre.html',
                     {'membre': Membre})
 
@@ -44,7 +44,7 @@ def ajoutmembre(request):
             membre.save()
             membres = Membre.objects.all()
             return render(request, 'membre/membre.html',
-                          {'membre': membre})
+                          {'membres': membres})
     else:
         creationmembre = Creationmembre()
         return render(request,
