@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from bibliothecaire.forms import Creationmedia
-from bibliothecaire.models import Media
+from bibliothecaire.forms import Creationmembre
+from bibliothecaire.models import Media, Membre
 
 
 def listemedias(request):
@@ -16,7 +17,6 @@ def ajoutmedia(request):
             media = Media()
             media.nom = creationmedia.cleaned_data['nom']
             media.type= creationmedia.cleaned_data['type']
-            media.disponible = creationmedia.cleaned_data['disponible']
             media.save()
             medias = Media.objects.all()
             return render(request, 'media/listsMedia.html',
@@ -26,4 +26,28 @@ def ajoutmedia(request):
         return render(request,
                       'media/ajoutmedia.html',
                       {'creationMedia': creationmedia}
+                      )
+
+def listemembres(request):
+    membres = Membre.objects.all()
+    return render(request, 'membre/membre.html',
+                    {'membre': Membre})
+
+def ajoutmembre(request):
+    if request.method == 'POST':
+        creationmembre = Creationmembre(request.POST)
+        if creationmembre.is_valid():
+            membre = Membre()
+            membre.nom = creationmembre.cleaned_data['nom']
+            membre.email = creationmembre.cleaned_data['email']
+            membre.date_inscription = creationmembre.cleaned_data['date_inscription']
+            membre.save()
+            membres = Membre.objects.all()
+            return render(request, 'membre/membre.html',
+                          {'membre': membre})
+    else:
+        creationmembre = Creationmembre()
+        return render(request,
+                      'membre/ajoutmembre.html',
+                      {'creationMembre': creationmembre}
                       )

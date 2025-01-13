@@ -1,0 +1,10 @@
+<body>
+    <div>
+        <h1>Ajouter un Membre</h1>
+        <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ creationMembre }}
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+</body>

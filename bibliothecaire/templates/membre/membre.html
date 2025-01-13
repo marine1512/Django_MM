@@ -1,0 +1,9 @@
+<body>
+    <div>
+        <h1>Listes des Membres</h1>
+            {% for membre in membres %}
+            <li> {{ membre.id }} : <u>Nom</u> : {{ membre.nom }} | <u>Email</u> : {{ membre.email }} | <u>Date d'inscription</u> : {{ membre.date_inscription }} </li>
+            {% endfor %}
+        </ol>
+    </div>
+</body>

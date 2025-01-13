@@ -7,4 +7,3 @@ def listemedias(request):
     return render(request, 'medias/lists.html',
                   {'medias': medias})
 
-
