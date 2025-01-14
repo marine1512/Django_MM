@@ -10,8 +10,13 @@ class Media(models.Model):
 class Membre(models.Model):
     nom = models.fields.CharField(max_length=150)
     email = models.EmailField()
-    emprunt = models.fields.CharField(max_length=150, default='SOME STRING')
+    emprunt = models.fields.CharField(max_length=150)
 
+
+class Emprunt(models.Model):
+    nom_media = models.fields.CharField(max_length=150)
+    type_media = models.fields.CharField(max_length=150)
+    emprunt = models.fields.CharField(max_length=150)
 
 """class Livre(Media):
     name = models.fields.CharField(max_length=150)

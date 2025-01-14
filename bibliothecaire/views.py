@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from bibliothecaire.forms import Creationmedia, Creationemprunt, Modifemprunt
 from bibliothecaire.forms import Creationmembre
-from bibliothecaire.models import Media, Membre
+from bibliothecaire.models import Media, Membre, Emprunt
 
 
 def listemedias(request):
@@ -58,12 +58,12 @@ def ajoutemprunt(request):
     if request.method == 'POST':
         creationemprunt = Creationemprunt(request.POST)
         if creationemprunt.is_valid():
-            creationemprunt = Membre()
+            creationemprunt = Emprunt()
             creationemprunt.nom = creationemprunt.cleaned_data['nom']
             creationemprunt.media= creationemprunt.cleaned_data['media']
             creationemprunt.membre_emprunt = creationemprunt.cleaned_data['membre_emprunt']
             creationemprunt.save()
-            creationemprunt = Membre.objects.all()
+            creationemprunt = Emprunt.objects.all()
             return render(request,
                           'membre/membre.html',
                           {'creationEmprunt': creationemprunt})
@@ -79,11 +79,11 @@ def modifemprunt(request):
     if request.method == 'POST':
         modif_emprunt = Modifemprunt(request.POST)
         if modif_emprunt.is_valid():
-            emprunt = Membre()
-            emprunt.nom = modif_emprunt.cleaned_data['nom']
-            emprunt.media = modif_emprunt.cleaned_data['media']
-            emprunt.membre_emprunt = modif_emprunt.cleaned_data['membre']
-            emprunt.save()
+            modif_emprunt = Membre()
+            modif_emprunt.nom = modif_emprunt.cleaned_data['nom']
+            modif_emprunt.media = modif_emprunt.cleaned_data['media']
+            modif_emprunt.membre_emprunt = modif_emprunt.cleaned_data['membre']
+            modif_emprunt.save()
             emprunts = Membre.objects.all()
             return render(request,
                         'membre/membre.html',
