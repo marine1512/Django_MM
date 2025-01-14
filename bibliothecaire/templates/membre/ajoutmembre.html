@@ -1,5 +1,9 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
 <body>
-    <div>
+    <div class="membre">
         <h1>Ajouter un Membre</h1>
         <form action="" method="post" novalidate>
         {% csrf_token %}

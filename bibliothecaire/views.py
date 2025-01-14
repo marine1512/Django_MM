@@ -28,10 +28,11 @@ def ajoutmedia(request):
                       {'creationMedia': creationmedia})
 
 
+
 def listemembres(request):
-    membre = Membre.objects.all()
+    membres = Membre.objects.all()
     return render(request, 'membre/membre.html',
-                    {'membre': membre})
+                    {'membres': membres})
 
 
 def ajoutmembre(request):
@@ -58,15 +59,15 @@ def ajoutemprunt(request):
     if request.method == 'POST':
         creationemprunt = Creationemprunt(request.POST)
         if creationemprunt.is_valid():
-            creationemprunt = Emprunt()
-            creationemprunt.nom = creationemprunt.cleaned_data['nom']
-            creationemprunt.media= creationemprunt.cleaned_data['media']
-            creationemprunt.membre_emprunt = creationemprunt.cleaned_data['membre_emprunt']
-            creationemprunt.save()
-            creationemprunt = Emprunt.objects.all()
+            emprunt = Emprunt()
+            emprunt.nom_media = creationemprunt.cleaned_data['nom_media']
+            emprunt.type_media= creationemprunt.cleaned_data['type_media']
+            emprunt.emprunt = creationemprunt.cleaned_data['emprunt']
+            emprunt.save()
+            emprunts = Emprunt.objects.all()
             return render(request,
                           'membre/membre.html',
-                          {'creationEmprunt': creationemprunt})
+                          {'emprunts': emprunts})
     else:
         creationemprunt = Creationemprunt()
         return render(request,
