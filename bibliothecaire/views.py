@@ -63,11 +63,12 @@ def ajoutemprunt(request):
             emprunt.nom_media = creationemprunt.cleaned_data['nom_media']
             emprunt.type_media= creationemprunt.cleaned_data['type_media']
             emprunt.emprunt = creationemprunt.cleaned_data['emprunt']
+            emprunt.nombre_emprunt = creationemprunt.cleaned_data['nombre_emprunt']
             emprunt.save()
-            emprunts = Membre.objects.all()
+            membres = Membre.objects.all()
             return render(request,
                           'membre/membre.html',
-                          {'emprunts': emprunts})
+                          {'membres': membres})
     else:
         creationemprunt = Creationemprunt()
         return render(request,
@@ -80,15 +81,16 @@ def modifemprunt(request):
     if request.method == 'POST':
         modif_emprunt = Modifemprunt(request.POST)
         if modif_emprunt.is_valid():
-            modif_emprunt = Membre()
-            modif_emprunt.nom = modif_emprunt.cleaned_data['nom']
-            modif_emprunt.media = modif_emprunt.cleaned_data['media']
-            modif_emprunt.membre_emprunt = modif_emprunt.cleaned_data['membre']
-            modif_emprunt.save()
-            emprunts = Membre.objects.all()
+            emprunt = Membre()
+            emprunt.nom = modif_emprunt.cleaned_data['nom']
+            emprunt.media = modif_emprunt.cleaned_data['media']
+            emprunt.membre_emprunt = modif_emprunt.cleaned_data['membre']
+            emprunt.nombre_emprunt = modif_emprunt.cleaned_data['nombre_emprunt']
+            emprunt.save()
+            membres = Membre.objects.all()
             return render(request,
                         'membre/membre.html',
-                        {'emprunts': emprunts})
+                        {'membres': membres})
     else:
         modif_emprunt = Modifemprunt()
         return render(request,

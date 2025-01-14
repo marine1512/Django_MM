@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Media(models.Model):
@@ -11,12 +12,23 @@ class Membre(models.Model):
     nom = models.fields.CharField(max_length=150)
     email = models.EmailField()
     emprunt = models.fields.CharField(max_length=150)
-
+    nombre_emprunt = models.FloatField(
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(3)
+        ]
+    )
 
 class Emprunt(models.Model):
     nom_media = models.fields.CharField(max_length=150)
     type_media = models.fields.CharField(max_length=150)
     emprunt = models.fields.CharField(max_length=150)
+    nombre_emprunt = models.FloatField(
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(3)
+        ]
+    )
 
 """class Livre(Media):
     name = models.fields.CharField(max_length=150)

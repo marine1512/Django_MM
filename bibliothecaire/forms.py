@@ -14,9 +14,10 @@ class Creationemprunt(forms.Form):
     nom_media = forms.CharField(required=False)
     type_media = forms.CharField(required=False)
     emprunt = forms.CharField(required=False)
-
+    nombre_emprunt = forms.FloatField(required=False)
 
 class Modifemprunt(forms.Form):
     nom_media = forms.CharField(required=False)
     type_media = forms.CharField(required=False)
     emprunt = forms.CharField(required=False)
+    nombre_emprunt = forms.FloatField(required=False)

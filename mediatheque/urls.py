@@ -6,7 +6,7 @@ urlpatterns = [
 path('', view.listemedias),
 path('ajoutmedia/', views.ajoutmedia),
 path('ajoutemprunt/', views.ajoutemprunt),
-path('modifemprunt/', views.modifemprunt),
+path('modifemprunt/<int:id>/', views.modifemprunt),
 path('membre/', views.listemembres),
 path('ajoutmembre/', views.ajoutmembre),
 ]
