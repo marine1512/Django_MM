@@ -59,12 +59,12 @@ def ajoutemprunt(request):
     if request.method == 'POST':
         creationemprunt = Creationemprunt(request.POST)
         if creationemprunt.is_valid():
-            emprunt = Emprunt()
+            emprunt = Membre()
             emprunt.nom_media = creationemprunt.cleaned_data['nom_media']
             emprunt.type_media= creationemprunt.cleaned_data['type_media']
             emprunt.emprunt = creationemprunt.cleaned_data['emprunt']
             emprunt.save()
-            emprunts = Emprunt.objects.all()
+            emprunts = Membre.objects.all()
             return render(request,
                           'membre/membre.html',
                           {'emprunts': emprunts})
