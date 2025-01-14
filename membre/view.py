@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from membre.models import Media
+from bibliothecaire.models import Media
 
 
 def listemedias(request):
     medias = Media.objects.all()
-    return render(request, 'medias/lists.html',
+    return render(request, 'media/listsMedia.html',
                   {'medias': medias})
-

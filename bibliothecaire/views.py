@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from bibliothecaire.forms import Creationmedia
+from bibliothecaire.forms import Creationmedia, Creationemprunt, Modifemprunt
 from bibliothecaire.forms import Creationmembre
 from bibliothecaire.models import Media, Membre
 
@@ -25,13 +25,14 @@ def ajoutmedia(request):
         creationmedia = Creationmedia()
         return render(request,
                       'media/ajoutmedia.html',
-                      {'creationMedia': creationmedia}
-                      )
+                      {'creationMedia': creationmedia})
+
 
 def listemembres(request):
     membre = Membre.objects.all()
     return render(request, 'membre/membre.html',
-                    {'membre': Membre})
+                    {'membre': membre})
+
 
 def ajoutmembre(request):
     if request.method == 'POST':
@@ -40,10 +41,10 @@ def ajoutmembre(request):
             membre = Membre()
             membre.nom = creationmembre.cleaned_data['nom']
             membre.email = creationmembre.cleaned_data['email']
-            membre.date_inscription = creationmembre.cleaned_data['date_inscription']
             membre.save()
             membres = Membre.objects.all()
-            return render(request, 'membre/membre.html',
+            return render(request,
+                          'membre/membre.html',
                           {'membres': membres})
     else:
         creationmembre = Creationmembre()
@@ -51,3 +52,45 @@ def ajoutmembre(request):
                       'membre/ajoutmembre.html',
                       {'creationMembre': creationmembre}
                       )
+
+
+def ajoutemprunt(request):
+    if request.method == 'POST':
+        creationemprunt = Creationemprunt(request.POST)
+        if creationemprunt.is_valid():
+            creationemprunt = Membre()
+            creationemprunt.nom = creationemprunt.cleaned_data['nom']
+            creationemprunt.media= creationemprunt.cleaned_data['media']
+            creationemprunt.membre_emprunt = creationemprunt.cleaned_data['membre_emprunt']
+            creationemprunt.save()
+            creationemprunt = Membre.objects.all()
+            return render(request,
+                          'membre/membre.html',
+                          {'creationEmprunt': creationemprunt})
+    else:
+        creationemprunt = Creationemprunt()
+        return render(request,
+                      'membre/ajoutemprunt.html',
+                      {'creationEmprunt': creationemprunt}
+                      )
+
+
+def modifemprunt(request):
+    if request.method == 'POST':
+        modif_emprunt = Modifemprunt(request.POST)
+        if modif_emprunt.is_valid():
+            emprunt = Membre()
+            emprunt.nom = modif_emprunt.cleaned_data['nom']
+            emprunt.media = modif_emprunt.cleaned_data['media']
+            emprunt.membre_emprunt = modif_emprunt.cleaned_data['membre']
+            emprunt.save()
+            emprunts = Membre.objects.all()
+            return render(request,
+                        'membre/membre.html',
+                        {'emprunts': emprunts})
+    else:
+        modif_emprunt = Modifemprunt()
+        return render(request,
+                    'membre/modifemprunt.html',
+                    {'modif_Emprunt': modif_emprunt}
+                    )

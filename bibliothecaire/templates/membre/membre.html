@@ -2,7 +2,7 @@
     <div>
         <h1>Listes des Membres</h1>
             {% for membre in membres %}
-            <li> {{ membre.id }} : <u>Nom</u> : {{ membre.nom }} | <u>Email</u> : {{ membre.email }} | <u>Date d'inscription</u> : {{ membre.date_inscription }} </li>
+            <li> {{ membre.id }} : <u>Nom</u> : {{ membre.nom }} | <u>Email</u> : {{ membre.email }} | <u>Emprunts en cours</u> : {{ membre.emprunt }} </li>
             {% endfor %}
         </ol>
     </div>
