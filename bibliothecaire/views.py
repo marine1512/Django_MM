@@ -16,7 +16,6 @@ def ajoutmedia(request):
         if creationmedia.is_valid():
             media = Media()
             media.nom = creationmedia.cleaned_data['nom']
-            media.type= creationmedia.cleaned_data['type']
             media.save()
             medias = Media.objects.all()
             return render(request, 'media/listsMedia.html',
@@ -63,7 +62,6 @@ def ajoutemprunt(request):
             emprunt.nom_media = creationemprunt.cleaned_data['nom_media']
             emprunt.type_media= creationemprunt.cleaned_data['type_media']
             emprunt.emprunt = creationemprunt.cleaned_data['emprunt']
-            emprunt.nombre_emprunt = creationemprunt.cleaned_data['nombre_emprunt']
             emprunt.save()
             membres = Membre.objects.all()
             return render(request,

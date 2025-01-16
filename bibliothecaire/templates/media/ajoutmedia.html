@@ -8,6 +8,14 @@
         <form action="" method="post" novalidate>
         {% csrf_token %}
         {{ creationMedia }}
+            <select name="type" required>
+                <option value="" selected>---------</option>
+                <option value="1">Livre</option>
+                <option value="2">CD</option>
+                <option value="3">DVD</option>
+                <option value="4">Jeu de plateau</option>
+            </select>
+            <br>
             <input type="submit" value="Envoyer">
         </form>
     </div>
