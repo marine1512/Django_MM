@@ -3,8 +3,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Media(models.Model):
-    nom = models.fields.CharField(max_length=150)
+    nom_media = models.fields.CharField(max_length=150)
     type = models.CharField(max_length=150)
+    stock = models.CharField(max_length=150)
 
 
 class Membre(models.Model):

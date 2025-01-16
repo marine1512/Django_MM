@@ -1,13 +1,30 @@
 from django import forms
 
+
 class Creationmedia(forms.Form):
     type_choices = [
-        ('In stock', 'In stock'),
-        ('Out of stock', 'Out of stock'),
+        ('Type', 'Type'),
+        ('Livre', 'Livre'),
+        ('DVD', 'DVD'),
+        ('CD', 'CD'),
+        ('Jeu de plateau', 'Jeu de plateau'),
     ]
+    stocks = [
+        ('Voir', 'Voir'),
+        ('Disponible', 'Disponible'),
+        ('Indisponible', 'Indisponible'),
+    ]
+
     nom = forms.CharField(required=False)
     type = forms.ChoiceField(
         choices=type_choices,
+        widget= forms.Select(attrs={
+        'class': 'form-control'
+
+    })
+    )
+    stock = forms.ChoiceField(
+        choices=stocks,
         widget= forms.Select(attrs={
         'class': 'form-control'
 
