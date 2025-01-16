@@ -16,6 +16,7 @@ def ajoutmedia(request):
         if creationmedia.is_valid():
             media = Media()
             media.nom = creationmedia.cleaned_data['nom']
+            media.type = creationmedia.cleaned_data['type']
             media.save()
             medias = Media.objects.all()
             return render(request, 'media/listsMedia.html',

@@ -7,7 +7,7 @@
         <h1>Listes des Medias</h1>
             {% for media in medias %}
         <ul>
-            <li> {{ media.id }} : <u>Titre</u> : {{ media.nom }} | <u>Type</u> : {{ form.type }} </li>
+            <li> {{ media.id }} : <u>Titre</u> : {{ media.nom }} | <u>Type</u> : {{ media.type }} </li>
             {% endfor %}
         </ul>
     </div>
