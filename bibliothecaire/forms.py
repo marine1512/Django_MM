@@ -36,6 +36,11 @@ class Creationmembre(forms.Form):
     nom = forms.CharField(required=False)
     email = forms.EmailField(required=False)
 
+class Modifmembre(forms.Form):
+    id = forms.DecimalField()
+    nom = forms.CharField(required=False)
+    email = forms.EmailField(required=False)
+
 
 class Creationemprunt(forms.Form):
     nom_media = forms.CharField(required=False)
@@ -44,7 +49,7 @@ class Creationemprunt(forms.Form):
 
 
 class Modifemprunt(forms.Form):
+    id = forms.DecimalField()
     nom_media = forms.CharField(required=False)
     type_media = forms.CharField(required=False)
     emprunt = forms.CharField(required=False)
-

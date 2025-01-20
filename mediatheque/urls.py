@@ -4,9 +4,11 @@ from bibliothecaire import views
 
 urlpatterns = [
     path('', view.listemedias),
+    path('media', view.listemedias),
     path('ajoutmedia/', views.ajoutmedia),
     path('ajoutemprunt/', views.ajoutemprunt),
-    path('modifemprunt/<int:id>/', views.modifemprunt),
+    path('modifemprunt/', views.modifemprunt),
+    path('modifmembre/', views.modifmembre),
     path('membre/', views.listemembres),
     path('ajoutmembre/', views.ajoutmembre),
 ]
