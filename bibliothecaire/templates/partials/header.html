@@ -1,0 +1,30 @@
+
+<header>
+    <div class="container">
+  <ul class="nav bg-info">
+    <li class="nav-item">
+      <a class="nav-link link-light" href="{% url 'bibliothecaire:index' %}">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link link-light" href="{% url 'bibliothecaire:membre' %}">Liste des membres</a>
+    </li>
+          <li class="nav-item">
+      <a class="nav-link link-light" href="{% url 'bibliothecaire:modifmembre' %}">Modifier un membre</a>
+    </li>
+          <li class="nav-item">
+      <a class="nav-link link-light" href="/{% url 'bibliothecaire:media' %}">Liste des medias</a>
+    </li>
+          </li>
+          <li class="nav-item">
+      <a class="nav-link link-light" href="{% url 'bibliothecaire:ajoutemprunt' %}">Créer un emprunt</a>
+    </li>
+          </li>
+          <li class="nav-item">
+      <a class="nav-link link-light" href="{% url 'bibliothecaire:ajoutmedia' %}">Ajouter un media</a>
+    </li>
+  </ul>
+
+  {% block content %}
+  {% endblock %}
+    </div>
+</header>

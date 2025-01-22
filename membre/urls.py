@@ -1,6 +1,7 @@
 from django.urls import path
-from membre import view
+from . import views
+
 
 urlpatterns = [
-    path('', view.listemedias),
+    path('', views.listemedias),
 ]

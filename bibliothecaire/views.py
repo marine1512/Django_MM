@@ -73,10 +73,10 @@ def modifmembre(request):
                         'membre/membre.html',
                         {'membres': updatemembres})
     else:
-        modif_emprunt = Modifemprunt()
+        modif_membre = Modifmembre()
         return render(request,
-                    'membre/modifemprunt.html',
-                    {'modif_Emprunt': modif_emprunt}
+                    'membre/modifmembre.html',
+                    {'modifMembre': modif_membre}
                     )
 
 

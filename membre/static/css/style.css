@@ -1,0 +1,40 @@
+*{
+    font-family: Verdana;
+    background-color: antiquewhite;
+    text-align: center;
+}
+
+.media, .membre{
+    margin: 1em;
+    padding: 1.5em;
+    border: 1.5px solid black;
+}
+
+h1{
+    text-decoration: underline;
+}
+
+.fa-regular, .fa-solid{
+    font-size: 3em;
+    margin: 0.3em;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+li{
+    margin-bottom: 1em;
+}
+
+form > div{
+    margin-bottom: 1em;
+}
+
+form > input{
+    margin: 1em;
+    padding: 0.3em;
+    background-color: #00000030;
+    font-style: italic;
+}

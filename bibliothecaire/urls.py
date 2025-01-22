@@ -1,13 +1,14 @@
 from django.urls import path
-from bibliothecaire import views
+from . import views
 
+app_name="bibliothecaire"
 urlpatterns = [
-    path('', views.index),
-    path('media/', views.listemedias),
-    path('ajoutmedia/', views.ajoutmedia),
-    path('ajoutemprunt/', views.ajoutemprunt),
-    path('modifmembre/', views.modifmembre),
-    path('modifemprunt/', views.modifemprunt),
-    path('membre/', views.listemembres),
-    path('ajoutmembre/', views.ajoutmembre),
+    path('', views.index, name='index'),
+    path('media/', views.listemedias, name='listemedias'),
+    path('ajoutmedia/', views.ajoutmedia, name='ajoutmedia'),
+    path('ajoutemprunt/', views.ajoutemprunt, name='ajoutemprunt'),
+    path('modifmembre/', views.modifmembre, name='modifmembre'),
+    path('modifemprunt/', views.modifemprunt, name='modifemprunt'),
+    path('membre/', views.listemembres, name='listemembres'),
+    path('ajoutmembre/', views.ajoutmembre, name='ajoutmembre'),
 ]

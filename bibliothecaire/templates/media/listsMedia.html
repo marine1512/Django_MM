@@ -4,34 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 
 <body>
-<div class="container">
-  <ul class="nav bg-info">
-    <li class="nav-item">
-      <a class="nav-link link-light" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link link-light" href="/membre">Liste des membres</a>
-    </li>
-          <li class="nav-item">
-      <a class="nav-link link-light" href="/modifmembre">Modifier un membre</a>
-    </li>
-          <li class="nav-item">
-      <a class="nav-link link-light" href="/media">Liste des medias</a>
-    </li>
-          </li>
-          <li class="nav-item">
-      <a class="nav-link link-light" href="/ajoutemprunt">Créer un emprunt</a>
-    </li>
-          </li>
-          <li class="nav-item">
-      <a class="nav-link link-light" href="/ajoutmedia">Ajouter un media</a>
-    </li>
-  </ul>
-
-  {% block content %}
-  {% endblock %}
-
-        <div class="media">
+    <div class="media">
         <h1>Listes des Medias</h1>
             {% for media in medias %}
         <ul>

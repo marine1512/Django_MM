@@ -1,0 +1,15 @@
+{% load static %}
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Mediatheque{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    </head>
+    <body>
+        {% include "./partials/header.html %}
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer> Footer : Logiciel pour la bibliothèque</footer>
+    </body>
+</html>

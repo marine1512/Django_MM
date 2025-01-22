@@ -1,44 +1,51 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-
-class Media(models.Model):
-    type = models.CharField(max_length=150)
-    stock = models.CharField(max_length=150)
-
-
 class Membre(models.Model):
     nom = models.fields.CharField(max_length=150)
     email = models.EmailField()
-    emprunt = models.fields.CharField(max_length=150)
+   # emprunt = models.fields.CharField(max_length=150)
     nombre_emprunt = models.FloatField(
         validators=[
             MinValueValidator(0),
             MaxValueValidator(3)
         ]
     )
+    def __str__(self):
+        return self.nom
 
-class Emprunt(models.Model):
-    nom_media = models.fields.CharField(max_length=150)
-    type_media = models.fields.CharField(max_length=150)
+class Media(models.Model):
+    name = models.fields.CharField(max_length=150)
+    type = models.CharField(max_length=150)
+    stock = models.CharField(max_length=150)
 
 
 class Livre(Media):
-    name = models.fields.CharField(max_length=150)
     auteur = models.fields.CharField(max_length=150)
-    emprunteur = models.fields.CharField(max_length=150)
+    def __str__(self):
+        return self.name+" ('+self.auteur+')"
 
 
 class DVD(Media):
-    name = models.fields.CharField(max_length=150)
     realisateur = models.fields.CharField(max_length=150)
+    def __str__(self):
+        return self.name+" ('+self.realisateur+')"
 
 
 class CD(Media):
-    name = models.fields.CharField(max_length=150)
     artiste = models.fields.CharField(max_length=150)
-    emprunteur = models.fields.CharField(max_length=150)
+    def __str__(self):
+        return self.name+" ('+self.artiste+')"
 
-class JeuPlateau(models.Model):
+class Jeuplateau(models.Model):
     name = models.fields.CharField(max_length=150)
     createur = models.fields.CharField(max_length=150)
+    def __str__(self):
+        return self.name+" ('+self.createur+')"
+
+
+class Emprunt(models.Model):
+    membre = models.ForeignKey(Membre, on_delete=models.CASCADE)
+    media = models.ForeignKey(Media, on_delete=models.CASCADE)
+    date_emprunt = models.DateField()
+    date_retour = models.DateField()
