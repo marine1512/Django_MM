@@ -4,7 +4,7 @@ from . import views
 app_name="bibliothecaire"
 urlpatterns = [
     path('', views.index, name='index'),
-    path('media/', views.listemedias, name='media'),
+    path('listemedias/', views.listemedias, name='listemedias'),
     path('ajoutmedia/', views.ajoutmedia, name='ajoutmedia'),
     path('ajoutemprunt/', views.ajoutemprunt, name='ajoutemprunt'),
     path('modifmembre/', views.modifmembre, name='modifmembre'),

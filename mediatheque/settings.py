@@ -72,6 +72,10 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_DIRS = (
+  '/home/django/myproject/templates',
+)
+
 WSGI_APPLICATION = 'mediatheque.wsgi.application'
 
 
