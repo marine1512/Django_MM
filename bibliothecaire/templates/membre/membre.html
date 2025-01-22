@@ -1,13 +1,9 @@
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-
-<body>
-    <div class="membre">
-        <h1>Listes des Membres</h1>
-            {% for membre in membres %}
-            <li> {{ membre.id }} : <u>Nom</u> : {{ membre.nom }} | <u>Email</u> : {{ membre.email }}  | <u>Nombre d'emprunts en cours</u> : {{ membre.nombre_emprunt }} </li>
-            {% endfor %}
-        </ol>
-    </div>
-</body>
+{% extends './base.html' %}
+{% block content %}
+<div>
+    <h1>Listes des Membres</h1>
+    {% for membre in membres %}
+    <li> {{ membre.id }} : <u>Nom</u> : {{ membre.nom }} | <u>Email</u> : {{ membre.email }}  | <u>Nombre d'emprunts en cours</u> : {{ membre.nombre_emprunt }} </li>
+    {% endfor %}
+</div>
+{% endblock content %}

@@ -1,16 +1,11 @@
-{% load django_bootstrap5 %}
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-
-<body>
-    <div class="media">
-        <h1>Listes des Medias</h1>
-            {% for media in medias %}
-        <ul>
-            <li> {{ media.id }} : | <u>Type</u> : {{ media.type }} | <u>En stock</u> : {{ media.stock }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+{% extends './base.html' %}
+{% block content %}
+<div>
+    <h1>Listes des Medias</h1>
+    {% for media in medias %}
+    <ul>
+        <li> {{ media.id }} : | <u>Type</u> : {{ media.type }} | <u>En stock</u> : {{ media.stock }}</li>
+        {% endfor %}
+    </ul>
 </div>
-</body>
+{% endblock content %}
