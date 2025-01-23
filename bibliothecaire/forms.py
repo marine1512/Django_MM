@@ -15,7 +15,7 @@ class Creationmedia(forms.Form):
         ('Indisponible', 'Indisponible'),
     ]
 
-    nom = forms.CharField(required=False)
+    name = forms.CharField(required=False)
     type = forms.ChoiceField(
         choices=type_choices,
         widget= forms.Select(attrs={
@@ -37,7 +37,6 @@ class Creationmembre(forms.Form):
     email = forms.EmailField(required=False)
 
 class Modifmembre(forms.Form):
-    id = forms.DecimalField()
     nom = forms.CharField(required=False)
     email = forms.EmailField(required=False)
 

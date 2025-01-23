@@ -1,11 +1,29 @@
-{% extends './base.html' %}
+{% extends '../base.html' %}
+{% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 {% block content %}
 <div>
-    <h1>Listes des Medias</h1>
-    {% for media in medias %}
-    <ul>
-        <li> {{ media.id }} : | <u>Type</u> : {{ media.type }} | <u>En stock</u> : {{ media.stock }}</li>
-        {% endfor %}
-    </ul>
+    <h1>Listes des Medias <a href="{% url 'bibliothecaire:ajoutmedia' %}">Ajouter un Media</a></h1>
+
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Type</th>
+            <th>Stock</th>
+            <th></th>
+        </thead>
+        <tbody>
+           {% for media in medias %}
+           <tr>
+               <td>{{ media.id }}</td>
+               <td>{{ media.name }}</td>
+               <td>{{ media.type }}</td>
+               <td>{{ media.stock }}</td>
+           </tr>
+           {% endfor %}
+        </tbody>
+    </table>
+
 </div>
 {% endblock content %}

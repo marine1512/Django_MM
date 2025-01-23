@@ -5,9 +5,14 @@
 <body>
     <div class="book">
         <h1>Listes des Medias</h1>
-            {% for media in medias %}
-            <li> {{ media.id }} : <u>Titre</u> : {{ media.nom }} | <u>Auteur</u> : {{ media.type_media }}</li>
-            {% endfor %}
-        </ol>
+            {% if medias %}
+                <ul>
+                    {% for media in medias %}
+                         <li> {{ media.id }} : <u>Titre</u> : {{ media.name }} | <u>Type</u> : {{ media.type }} | <u>Auteur</u> : {{ media.stock }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Aucun media trouvé</p>
+            {% endif %}
     </div>
 </body>

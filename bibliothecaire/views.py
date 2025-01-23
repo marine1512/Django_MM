@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from bibliothecaire.forms import Creationmedia, Creationemprunt, Modifemprunt
 from bibliothecaire.forms import Creationmembre, Modifmembre
 from bibliothecaire.models import Media, Membre, Emprunt
@@ -18,6 +18,7 @@ def ajoutmedia(request):
         creationmedia = Creationmedia(request.POST)
         if creationmedia.is_valid():
             media = Media()
+            media.name = creationmedia.cleaned_data['name']
             media.type = creationmedia.cleaned_data['type']
             media.stock = creationmedia.cleaned_data['stock']
             media.save()
@@ -58,15 +59,13 @@ def ajoutmembre(request):
                       )
 
 
-def modifmembre(request):
+def modifmembre(request, id):
+    membre = get_object_or_404(Membre, pk=id)
     if request.method == 'POST':
         modif_membre = Modifmembre(request.POST)
         if modif_membre.is_valid():
-            membre = Membre()
             membre.nom = modif_membre.cleaned_data['nom']
             membre.email = modif_membre.cleaned_data['email']
-            membre.emprunt = modif_membre.cleaned_data['membre']
-            membre.nombre_emprunt = modif_membre.cleaned_data['nombre_emprunt']
             membre.save()
             updatemembres = Membre.objects.all()
             return render(request,
@@ -76,7 +75,7 @@ def modifmembre(request):
         modif_membre = Modifmembre()
         return render(request,
                     'membre/modifmembre.html',
-                    {'modifMembre': modif_membre}
+                    {'membres': modif_membre}
                     )
 
 
@@ -121,3 +120,5 @@ def modifemprunt(request):
                     'membre/modifemprunt.html',
                     {'modif_Emprunt': modif_emprunt}
                     )
+
+

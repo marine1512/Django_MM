@@ -1,9 +1,26 @@
-{% extends './base.html' %}
+{% extends '../base.html' %}
 {% block content %}
 <div>
     <h1>Listes des Membres</h1>
-    {% for membre in membres %}
-    <li> {{ membre.id }} : <u>Nom</u> : {{ membre.nom }} | <u>Email</u> : {{ membre.email }}  | <u>Nombre d'emprunts en cours</u> : {{ membre.nombre_emprunt }} </li>
-    {% endfor %}
+    <a href="{% url 'bibliothecaire:ajoutmembre' %}">Ajouter un membre</a>
+
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th></th>
+        </thead>
+        <tbody>
+           {% for membre in membres %}
+           <tr>
+               <td>{{ membre.id }}</td>
+               <td>{{ membre.nom }}</td>
+               <td>{{ membre.email }}</td>
+               <td><a href="{% url 'bibliothecaire:modifmembre' membre.id %}">Modifier</a></td>
+           </tr>
+           {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock content %}

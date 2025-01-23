@@ -5,12 +5,12 @@ class Membre(models.Model):
     nom = models.fields.CharField(max_length=150)
     email = models.EmailField()
    # emprunt = models.fields.CharField(max_length=150)
-    nombre_emprunt = models.FloatField(
+    """nombre_emprunt = models.FloatField(
         validators=[
             MinValueValidator(0),
             MaxValueValidator(3)
         ]
-    )
+    )"""
     def __str__(self):
         return self.nom
 

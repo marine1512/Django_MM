@@ -1,10 +1,10 @@
-{% extends './base.html' %}
+{% extends '../base.html' %}
 {% block content %}
 <div>
     <h1>Modifier un Membre</h1>
     <form action="" method="post" novalidate>
         {% csrf_token %}
-        {{ ModifMembre }}
+        {{ membres }}
         <input type="submit" value="Envoyer">
     </form>
 </div>

@@ -4,19 +4,12 @@
     text-align: center;
 }
 
-.media, .membre{
-    margin: 1em;
-    padding: 1.5em;
-    border: 1.5px solid black;
+header{
+    background-color:red;
 }
 
-h1{
-    text-decoration: underline;
-}
-
-.fa-regular, .fa-solid{
-    font-size: 3em;
-    margin: 0.3em;
+a{
+    font-size: 1px;
 }
 
 ul{
