@@ -6,11 +6,23 @@
     <div class="media">
         <h1>Listes des Medias</h1>
             {% if medias %}
-                <ul>
-                    {% for media in medias %}
-                         <li> {{ media.id }} : <u>Titre</u> : {{ media.name }} | <u>Type</u> : {{ media.type }} | <u>Stock</u> : {{ media.stock }}</li>
-                    {% endfor %}
-                </ul>
+ <table>
+        <thead>
+            <th><u>Nom</u></th>
+            <th><u>Type</u></th>
+            <th><u>Stock</u></th>
+            <th></th>
+        </thead>
+        <tbody>
+           {% for media in medias %}
+           <tr>
+               <td>{{ media.name }}</td>
+               <td>{{ media.type }}</td>
+               <td>{{ media.stock }}</td>
+           </tr>
+           {% endfor %}
+        </tbody>
+    </table>
             {% else %}
                 <p>Aucun media trouvé</p>
             {% endif %}

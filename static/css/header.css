@@ -1,0 +1,18 @@
+.navbar{
+    background-color:black;
+    padding: 0.5em;
+}
+
+ul, li, button{
+    display: flex;
+    background-color: black;
+    gap: 2em;
+    list-style-type: none;
+    text-decoration: underline;
+}
+
+a{
+    text-decoration: none;
+    color: antiquewhite;
+    background-color: black
+}
