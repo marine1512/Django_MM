@@ -3,12 +3,12 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 
 <body>
-    <div class="book">
+    <div class="media">
         <h1>Listes des Medias</h1>
             {% if medias %}
                 <ul>
                     {% for media in medias %}
-                         <li> {{ media.id }} : <u>Titre</u> : {{ media.name }} | <u>Type</u> : {{ media.type }} | <u>Auteur</u> : {{ media.stock }}</li>
+                         <li> {{ media.id }} : <u>Titre</u> : {{ media.name }} | <u>Type</u> : {{ media.type }} | <u>Stock</u> : {{ media.stock }}</li>
                     {% endfor %}
                 </ul>
             {% else %}

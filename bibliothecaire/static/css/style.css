@@ -1,33 +1,5 @@
-*{
-    font-family: Verdana;
-    background-color: antiquewhite;
-    text-align: center;
+.media, .membre {
+    color:pink;
 }
 
-header{
-    background-color:red;
-}
 
-a{
-    font-size: 1px;
-}
-
-ul{
-    list-style: none;
-    padding: 0;
-}
-
-li{
-    margin-bottom: 1em;
-}
-
-form > div{
-    margin-bottom: 1em;
-}
-
-form > input{
-    margin: 1em;
-    padding: 0.3em;
-    background-color: #00000030;
-    font-style: italic;
-}

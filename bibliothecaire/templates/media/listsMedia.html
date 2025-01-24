@@ -1,9 +1,9 @@
 {% extends '../base.html' %}
-{% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 {% block content %}
-<div>
-    <h1>Listes des Medias <a href="{% url 'bibliothecaire:ajoutmedia' %}">Ajouter un Media</a></h1>
+
+<div class="media">
+    <h1>Listes des Medias</h1>
+    <button><a href="{% url 'bibliothecaire:ajoutmedia' %}">Ajouter un Media +</a></button>
 
     <table>
         <thead>

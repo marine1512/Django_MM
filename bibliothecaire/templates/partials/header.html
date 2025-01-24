@@ -1,23 +1,17 @@
-{% load static %}
-
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-
-
 <header>
-    <div class="container">
-        <ul class="nav bg-info">
-            <li class="nav-item">
-              <a class="nav-link link-light" href="{% url 'bibliothecaire:index' %}">Home</a>
+    <div class="navbar">
+        <ul>
+            <li>
+              <a href="{% url 'bibliothecaire:index' %}">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link link-light" href="{% url 'bibliothecaire:listemembres' %}">Liste des membres</a>
+            <li>
+              <a href="{% url 'bibliothecaire:listemembres' %}">Liste des membres</a>
             </li>
-              <li class="nav-item">
-              <a class="nav-link link-light" href="{% url 'bibliothecaire:listemedias' %}">Liste des medias</a>
+              <li>
+              <a href="{% url 'bibliothecaire:listemedias' %}">Liste des medias</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link link-light" href="{% url 'bibliothecaire:ajoutemprunt' %}">Créer un emprunt</a>
+            <li>
+                <a href="{% url 'bibliothecaire:ajoutemprunt' %}">Créer un emprunt</a>
             </li>
         </ul>
     </div>
