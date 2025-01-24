@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-        <meta charset="UTF-8">
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-        <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}" />
-        <title>{% block title %}Mediatheque{% endblock %}</title>
-
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}" />
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <title>{% block title %}Mediatheque{% endblock %}</title>
 </head>
 <body>
      {% include './partials/header.html' %}

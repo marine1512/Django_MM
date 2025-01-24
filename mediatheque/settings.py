@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bibliothecaire.apps.BibliothecaireConfig',
     'membre.apps.MembreConfig',
+    'fontawesomefree',
 
 ]
 
