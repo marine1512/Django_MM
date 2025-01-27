@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from bibliothecaire.forms import Creationmedia, Creationemprunt, Modifemprunt
 from bibliothecaire.forms import Creationmembre, Modifmembre
-from bibliothecaire.models import Media, Membre, Emprunt
+from bibliothecaire.models import Media, Membre
+from bibliothecaire.models import Emprunt
 
 def index(request):
     return render(request, 'Home.html')
-
+print(index)
 
 def listemedias(request):
     medias = Media.objects.all()
@@ -79,16 +80,17 @@ def modifmembre(request, id):
                     )
 
 
-def ajoutemprunt(request):
+def ajoutemprunt(request, id):
+    emprunt = get_object_or_404(Media, pk=id)
     if request.method == 'POST':
         creationemprunt = Creationemprunt(request.POST)
         if creationemprunt.is_valid():
-            emprunt = Membre()
+            emprunt = Emprunt()
             emprunt.nom_media = creationemprunt.cleaned_data['nom_media']
             emprunt.type_media= creationemprunt.cleaned_data['type_media']
-            emprunt.emprunt = creationemprunt.cleaned_data['emprunt']
+            emprunt.membre_emprunt = creationemprunt.cleaned_data['membre_emprunt']
             emprunt.save()
-            membres = Membre.objects.all()
+            membres = Emprunt.objects.all()
             return render(request,
                           'membre/membre.html',
                           {'membres': membres})
@@ -120,5 +122,4 @@ def modifemprunt(request):
                     'membre/modifemprunt.html',
                     {'modif_Emprunt': modif_emprunt}
                     )
-
 

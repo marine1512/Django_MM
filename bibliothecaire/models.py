@@ -4,7 +4,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Membre(models.Model):
     nom = models.fields.CharField(max_length=150)
     email = models.EmailField()
-   # emprunt = models.fields.CharField(max_length=150)
+    media_emprunt = models.fields.CharField(max_length=150)
     """nombre_emprunt = models.FloatField(
         validators=[
             MinValueValidator(0),
@@ -47,5 +47,3 @@ class Jeuplateau(models.Model):
 class Emprunt(models.Model):
     membre = models.ForeignKey(Membre, on_delete=models.CASCADE)
     media = models.ForeignKey(Media, on_delete=models.CASCADE)
-    date_emprunt = models.DateField()
-    date_retour = models.DateField()

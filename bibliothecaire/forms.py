@@ -44,11 +44,10 @@ class Modifmembre(forms.Form):
 class Creationemprunt(forms.Form):
     nom_media = forms.CharField(required=False)
     type_media = forms.CharField(required=False)
-    emprunt = forms.CharField(required=False)
+    membre_emprunt= forms.CharField(required=False)
 
 
 class Modifemprunt(forms.Form):
-    id = forms.DecimalField()
     nom_media = forms.CharField(required=False)
     type_media = forms.CharField(required=False)
-    emprunt = forms.CharField(required=False)
+    membre = forms.CharField(required=False)
