@@ -9,21 +9,26 @@
         <thead>
             <th><u>Id</u></th>
             <th><u>Nom</u></th>
+            <th><u>Prénom</u></th>
             <th><u>Email</u></th>
-            <th>Emprunt</th>
+            <th></th>
         </thead>
         <tbody>
            {% for membre in membres %}
            <tr>
                <td>{{ membre.id }}</td>
                <td>{{ membre.nom }}</td>
+               <td>{{ membre.prenom }}</td>
                <td>{{ membre.email }}</td>
-               <td>{{ membre.membre_emprunt }}</td>
-
-               <td><button><a href="{% url 'bibliothecaire:modifmembre' media.id %}">Modifier</a></button></td>
+               <td><button><a href="{% url 'bibliothecaire:modifmembre' membre.id %}">Modifier</a></button></td>
+               <td><button><a href="{% url 'bibliothecaire:ajoutemprunt' membre.id %}" class="ajout">+ Ajouter un emprunt</a></button></td>
+               <td><button><a href="{% url 'bibliothecaire:listeemprunt' membre.id %}">Retourner un emprunt</a></button></td>
            </tr>
            {% endfor %}
         </tbody>
     </table>
+        {% if message %}
+        <p class="{{ class }}"> {{ message }}</p>
+        {% endif %}
 </div>
 {% endblock content %}

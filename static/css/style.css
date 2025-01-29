@@ -11,6 +11,14 @@
     margin-bottom: 1em;
 }
 
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
 .icone{
     display: flex;
     margin-top: 1em;
@@ -58,5 +66,7 @@ footer{
     background-color: black;
     color: antiquewhite;
 }
+
+
 
 

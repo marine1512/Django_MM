@@ -1,16 +1,11 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.forms import DateTimeField
+
 
 class Membre(models.Model):
     nom = models.fields.CharField(max_length=150)
+    prenom = models.fields.CharField(max_length=150)
     email = models.EmailField()
-    media_emprunt = models.fields.CharField(max_length=150)
-    """nombre_emprunt = models.FloatField(
-        validators=[
-            MinValueValidator(0),
-            MaxValueValidator(3)
-        ]
-    )"""
     def __str__(self):
         return self.nom
 

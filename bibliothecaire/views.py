@@ -6,7 +6,6 @@ from bibliothecaire.models import Emprunt
 
 def index(request):
     return render(request, 'Home.html')
-print(index)
 
 def listemedias(request):
     medias = Media.objects.all()
@@ -47,6 +46,7 @@ def ajoutmembre(request):
             membre = Membre()
             membre.nom = creationmembre.cleaned_data['nom']
             membre.email = creationmembre.cleaned_data['email']
+            membre.prenom = creationmembre.cleaned_data['prenom']
             membre.save()
             membres = Membre.objects.all()
             return render(request,
@@ -67,6 +67,7 @@ def modifmembre(request, id):
         if modif_membre.is_valid():
             membre.nom = modif_membre.cleaned_data['nom']
             membre.email = modif_membre.cleaned_data['email']
+            membre.prenom = modif_membre.cleaned_data['prenom']
             membre.save()
             updatemembres = Membre.objects.all()
             return render(request,
@@ -81,45 +82,39 @@ def modifmembre(request, id):
 
 
 def ajoutemprunt(request, id):
-    emprunt = get_object_or_404(Media, pk=id)
+    membres = Membre.objects.all()
     if request.method == 'POST':
         creationemprunt = Creationemprunt(request.POST)
         if creationemprunt.is_valid():
-            emprunt = Emprunt()
-            emprunt.nom_media = creationemprunt.cleaned_data['nom_media']
-            emprunt.type_media= creationemprunt.cleaned_data['type_media']
-            emprunt.membre_emprunt = creationemprunt.cleaned_data['membre_emprunt']
-            emprunt.save()
-            membres = Emprunt.objects.all()
-            return render(request,
+            encours_emprunts = Emprunt.objects.filter(membre=id).count()
+            if encours_emprunts < 3:
+                emprunt = Emprunt()
+                emprunt.membre = Membre.objects.get(pk=id)
+                emprunt.media = Media.objects.get(pk=request.POST['media'])
+                emprunt.save()
+                return render(request,
                           'membre/membre.html',
-                          {'membres': membres})
+                          {'membres': membres, 'message': 'Emprunt créé', 'class': 'success'})
+            else:
+                return render(request,
+                              'membre/membre.html',
+                              {'membres': membres, 'message': 'Maximum de 3 emprunts atteint.', 'class': 'error'})
     else:
         creationemprunt = Creationemprunt()
         return render(request,
-                      'membre/ajoutemprunt.html',
-                      {'creationEmprunt': creationemprunt}
-                      )
+                'emprunts/ajoutemprunt.html',
+                {'creationEmprunt': creationemprunt})
 
 
-def modifemprunt(request):
-    if request.method == 'POST':
-        modif_emprunt = Modifemprunt(request.POST)
-        if modif_emprunt.is_valid():
-            emprunt = Membre()
-            emprunt.nom = modif_emprunt.cleaned_data['nom']
-            emprunt.media = modif_emprunt.cleaned_data['media']
-            emprunt.membre_emprunt = modif_emprunt.cleaned_data['membre']
-            emprunt.nombre_emprunt = modif_emprunt.cleaned_data['nombre_emprunt']
-            emprunt.save()
-            membres = Membre.objects.all()
-            return render(request,
-                        'membre/membre.html',
-                        {'membres': membres})
-    else:
-        modif_emprunt = Modifemprunt()
-        return render(request,
-                    'membre/modifemprunt.html',
-                    {'modif_Emprunt': modif_emprunt}
-                    )
 
+
+def modifemprunt(request, id):
+    emprunt = get_object_or_404(Emprunt, pk=id)
+    membre = emprunt.membre
+    emprunt.delete()
+    emprunts = Emprunt.objects.filter(membre=membre.id)
+    return render(request, 'emprunts/emprunt.html', {'emprunts': emprunts})
+
+def listeemprunt(request, id):
+    emprunts = Emprunt.objects.filter(membre=id)
+    return render(request, 'emprunts/emprunt.html', {'emprunts': emprunts})

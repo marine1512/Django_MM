@@ -1,0 +1,25 @@
+{% extends '../base.html' %}
+{% block content %}
+<div class="membre">
+    <h1>Liste des emprunts</h1>
+    {%  if emprunts %}
+        <table>
+            {% for emprunt in emprunts %}
+        <thead>
+            <th><u>N°</u></th>
+            <th><u>Nom</u></th>
+            <th><u>Type</u></th>
+        </thead>
+            <tr>
+                <td> {{ emprunt.media.id }} </td>
+                <td> {{ emprunt.media.name }} </td>
+                <td>  ({{ emprunt.media.type}}) </td>
+                <td><button><a href="{% url 'bibliothecaire:modifemprunt' emprunt.id %}">Retour</a></button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Aucun emprunt pour ce membre</p>
+    {% endif %}
+</div>
+{% endblock content %}

@@ -21,8 +21,6 @@
                <td>{{ media.name }}</td>
                <td>{{ media.type }}</td>
                <td>{{ media.stock }}</td>
-               <td><button><a href="{% url 'bibliothecaire:ajoutemprunt' media.id %}">+ Ajouter un emprunt</a></button></td>
-               <td><button><a>Retourner un emprunt</a></button></td>
            </tr>
            {% endfor %}
         </tbody>
