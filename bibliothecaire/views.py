@@ -90,6 +90,7 @@ def ajoutemprunt(request, id):
         creationemprunt = Creationemprunt(request.POST)
         if creationemprunt.is_valid():
             encours_emprunts = Emprunt.objects.filter(membre=id).count()
+
             if encours_emprunts < 3:
                 emprunt = Emprunt()
                 emprunt.membre = Membre.objects.get(pk=id)
