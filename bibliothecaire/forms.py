@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django import forms
-from .models import Media
+from .models import Media, Membre
 
 
 class Creationmedia(forms.Form):
@@ -43,11 +43,16 @@ class Modifmembre(forms.Form):
     prenom = forms.CharField(required=False)
     email = forms.EmailField(required=False)
 
+class Deletemembre(forms.Form):
+    nom = forms.ChoiceField(required=True,
+        choices = [(choice.pk, choice.nom + ' ' + choice.prenom) for choice in Membre.objects.all()],
+        widget = forms.Select(attrs= {'class': 'form-control'}))
 
 class Creationemprunt(forms.Form):
     media = forms.ChoiceField(required=True,
         choices = [(choice.pk, choice.name + ' (' + choice.type + ')') for choice in Media.objects.all()],
         widget = forms.Select(attrs= {'class': 'form-control'}))
+    date = forms.DateTimeField()
 
 class Modifemprunt(forms.Form):
     nom_media = forms.CharField(required=False)

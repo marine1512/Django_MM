@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from bibliothecaire.forms import Creationmedia, Creationemprunt, Modifemprunt
-from bibliothecaire.forms import Creationmembre, Modifmembre
+from bibliothecaire.forms import Creationmembre, Modifmembre, Deletemembre
 from bibliothecaire.models import Media, Membre
 from bibliothecaire.models import Emprunt
 
@@ -11,7 +11,6 @@ def listemedias(request):
     medias = Media.objects.all()
     return render(request, 'media/listsMedia.html',
                   {'medias': medias})
-
 
 def ajoutmedia(request):
     if request.method == 'POST':
@@ -31,13 +30,10 @@ def ajoutmedia(request):
                       'media/ajoutmedia.html',
                       {'creationMedia': creationmedia})
 
-
-
 def listemembres(request):
     membres = Membre.objects.all()
     return render(request, 'membre/membre.html',
                     {'membres': membres})
-
 
 def ajoutmembre(request):
     if request.method == 'POST':
@@ -59,7 +55,6 @@ def ajoutmembre(request):
                       {'creationMembre': creationmembre}
                       )
 
-
 def modifmembre(request, id):
     membre = get_object_or_404(Membre, pk=id)
     if request.method == 'POST':
@@ -80,6 +75,14 @@ def modifmembre(request, id):
                     {'membres': modif_membre}
                     )
 
+def deletemembre(request, id):
+    membre = Membre.objects.get(pk=id)
+    membre.delete()
+    membres = Membre.objects.all()
+    return render(request,
+                'membre/membre.html',
+                {'membres': membres}
+                )
 
 def ajoutemprunt(request, id):
     membres = Membre.objects.all()
@@ -104,9 +107,6 @@ def ajoutemprunt(request, id):
         return render(request,
                 'emprunts/ajoutemprunt.html',
                 {'creationEmprunt': creationemprunt})
-
-
-
 
 def modifemprunt(request, id):
     emprunt = get_object_or_404(Emprunt, pk=id)

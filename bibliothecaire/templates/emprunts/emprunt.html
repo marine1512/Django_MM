@@ -9,11 +9,13 @@
             <th><u>N°</u></th>
             <th><u>Nom</u></th>
             <th><u>Type</u></th>
+            <th><u>Date</u></th>
         </thead>
             <tr>
                 <td> {{ emprunt.media.id }} </td>
                 <td> {{ emprunt.media.name }} </td>
                 <td>  ({{ emprunt.media.type}}) </td>
+                <td>  {{ emprunt.date}} </td>
                 <td><button><a href="{% url 'bibliothecaire:modifemprunt' emprunt.id %}">Retour</a></button></td>
             </tr>
             {% endfor %}

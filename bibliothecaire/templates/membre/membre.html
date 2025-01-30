@@ -7,7 +7,7 @@
     </div>
     <table>
         <thead>
-            <th><u>Id</u></th>
+            <th></th>
             <th><u>Nom</u></th>
             <th><u>Prénom</u></th>
             <th><u>Email</u></th>
@@ -16,12 +16,12 @@
         <tbody>
            {% for membre in membres %}
            <tr>
-               <td>{{ membre.id }}</td>
+               <td><button class="delete"><a href="{% url 'bibliothecaire:deletemembre' membre.id %}">X</a></button></td>
                <td>{{ membre.nom }}</td>
                <td>{{ membre.prenom }}</td>
                <td>{{ membre.email }}</td>
                <td><button><a href="{% url 'bibliothecaire:modifmembre' membre.id %}">Modifier</a></button></td>
-               <td><button><a href="{% url 'bibliothecaire:ajoutemprunt' membre.id %}" class="ajout">+ Ajouter un emprunt</a></button></td>
+               <td><button><a href="{% url 'bibliothecaire:ajoutemprunt' membre.id %}">+ Ajouter un emprunt</a></button></td>
                <td><button><a href="{% url 'bibliothecaire:listeemprunt' membre.id %}">Retourner un emprunt</a></button></td>
            </tr>
            {% endfor %}
