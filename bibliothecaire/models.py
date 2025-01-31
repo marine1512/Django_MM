@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.db import models
 
 class Membre(models.Model):
@@ -43,7 +41,4 @@ class Emprunt(models.Model):
     membre = models.ForeignKey(Membre, on_delete=models.CASCADE)
     media = models.ForeignKey(Media, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
-
-    def  formatted_date ( self ):
-         return self.created_at.strftime( '%B %d, %Y à %I:%M %p' )
-
+    retour = models.DateTimeField(null=True)

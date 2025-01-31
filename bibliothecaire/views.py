@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from bibliothecaire.forms import Creationmedia, Creationemprunt, Modifemprunt
-from bibliothecaire.forms import Creationmembre, Modifmembre, Deletemembre
+from bibliothecaire.forms import Creationmedia, Creationemprunt
+from bibliothecaire.forms import Creationmembre, Modifmembre
 from bibliothecaire.models import Media, Membre
 from bibliothecaire.models import Emprunt
+from datetime import datetime, timedelta
 
 def index(request):
     return render(request, 'Home.html')
@@ -90,17 +91,17 @@ def ajoutemprunt(request, id):
         creationemprunt = Creationemprunt(request.POST)
         if creationemprunt.is_valid():
             encours_emprunts = Emprunt.objects.filter(membre=id).count()
-
-            if encours_emprunts < 3:
+            if encours_emprunts < 3 :
                 emprunt = Emprunt()
                 emprunt.membre = Membre.objects.get(pk=id)
                 emprunt.media = Media.objects.get(pk=request.POST['media'])
+                emprunt.retour = datetime.now() + timedelta(days=7)
                 emprunt.save()
                 return render(request,
                           'membre/membre.html',
                           {'membres': membres, 'message': 'Emprunt créé', 'class': 'success'})
             else:
-                return render(request,
+                return render (request,
                               'membre/membre.html',
                               {'membres': membres, 'message': 'Maximum de 3 emprunts atteint.', 'class': 'error'})
     else:
@@ -112,6 +113,12 @@ def ajoutemprunt(request, id):
 def modifemprunt(request, id):
     emprunt = get_object_or_404(Emprunt, pk=id)
     membre = emprunt.membre
+    if datetime.now() > emprunt.retour + timedelta(days=7):
+        return render(request,
+                      'emprunts/emprunt.html',
+                      {'emprunts': Emprunt.objects.filter(membre=emprunt.membre.id),
+                       'message': 'Impossible de modifier. Emprunt dépassé de 7 jours.',
+                       'class': 'error'})
     emprunt.delete()
     emprunts = Emprunt.objects.filter(membre=membre.id)
     return render(request, 'emprunts/emprunt.html', {'emprunts': emprunts})

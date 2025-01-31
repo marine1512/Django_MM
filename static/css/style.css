@@ -61,9 +61,19 @@ td, th{
     padding-right: 20px;
 }
 
+.delete, .delete>a{
+    background-color: #cd8a8afa;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
 .envoyer{
     background-color: black;
     color: white;
+}
+
+.retour_emprunt{
+    color: red;
 }
 
 footer{

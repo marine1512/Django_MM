@@ -3,8 +3,16 @@
     padding: 0.5em;
 }
 
+.mediatheque{
+    font-size: 1em;
+    padding: 1em;
+    color: #cd8a8afa;
+    border: 1px solid #cd8a8afa;
+}
+
 ul, li, button{
     display: flex;
+    align-items:center;
     background-color: black;
     gap: 2em;
     list-style-type: none;
@@ -15,4 +23,8 @@ a{
     text-decoration: none;
     color: antiquewhite;
     background-color: black
+}
+
+a:focus{
+    color: #cd8a8afa;
 }

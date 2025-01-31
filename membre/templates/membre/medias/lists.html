@@ -8,6 +8,7 @@
             {% if medias %}
  <table>
         <thead>
+            <th></th>
             <th><u>Nom</u></th>
             <th><u>Type</u></th>
             <th></th>
@@ -15,6 +16,7 @@
         <tbody>
            {% for media in medias %}
            <tr>
+               <td>_ </td>
                <td>{{ media.name }}</td>
                <td>{{ media.type }}</td>
            </tr>

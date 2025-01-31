@@ -1,4 +1,3 @@
-from django.utils import timezone
 from django import forms
 from .models import Media, Membre
 
@@ -52,9 +51,5 @@ class Creationemprunt(forms.Form):
     media = forms.ChoiceField(required=True,
         choices = [(choice.pk, choice.name + ' (' + choice.type + ')') for choice in Media.objects.all()],
         widget = forms.Select(attrs= {'class': 'form-control'}))
-    date = forms.DateTimeField()
 
-class Modifemprunt(forms.Form):
-    nom_media = forms.CharField(required=False)
-    type_media = forms.CharField(required=False)
-    membre = forms.CharField(required=False)
+
