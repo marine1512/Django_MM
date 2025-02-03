@@ -1,5 +1,5 @@
 .navbar{
-    background-color:black;
+    background-image: url("../images/img.png");
     padding: 0.5em;
 }
 
@@ -17,6 +17,7 @@ ul, li, button{
     gap: 2em;
     list-style-type: none;
     text-decoration: underline;
+    z-index: 1;
 }
 
 a{

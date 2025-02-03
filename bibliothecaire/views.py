@@ -77,7 +77,7 @@ def modifmembre(request, id):
                     )
 
 def deletemembre(request, id):
-    membre = Membre.objects.get(pk=id)
+    membre = Membre.objects.get(pk=id) #récupération de l'ID du membre
     membre.delete()
     membres = Membre.objects.all()
     return render(request,
@@ -91,7 +91,7 @@ def ajoutemprunt(request, id):
         creationemprunt = Creationemprunt(request.POST)
         if creationemprunt.is_valid():
             encours_emprunts = Emprunt.objects.filter(membre=id).count()
-            if encours_emprunts < 3 :
+            if encours_emprunts < 3 : #Vérification du nombre d'emprunts
                 emprunt = Emprunt()
                 emprunt.membre = Membre.objects.get(pk=id)
                 emprunt.media = Media.objects.get(pk=request.POST['media'])
@@ -99,7 +99,18 @@ def ajoutemprunt(request, id):
                 emprunt.save()
                 return render(request,
                           'membre/membre.html',
-                          {'membres': membres, 'message': 'Emprunt créé', 'class': 'success'})
+                          {'membres': membres, 'message': 'Votre emprunt a été créé pour une durée maximale de 7 jours.', 'class': 'success'})
+            seven_days = datetime.now() - timedelta(days=7)
+            old_emprunts = Emprunt.objects.filter(membre=id, retour__lte=seven_days)
+            if old_emprunts.count() > 0: # durée de l'emprunt. Ne doit pas dépasser 7 jours.
+                return render(request,
+                              'membre/membre.html',
+                              {'membres': membres, 'message': 'Vous avez des emprunts de plus de 7 jours.', 'class': 'error'})
+            emprunts_retard = Emprunt.objects.filter(membre=membre, retour__lt=now())
+            if emprunts_retard.exists(): # Si un emprunt est en retard, bloque un nouveau.
+                return render(request,
+                              'membre/membre.html',
+                              {'membre': membre,'message': 'Vous avez des emprunts en retard. Veuillez les rendre avant d\'effectuer un nouvel emprunt.' })
             else:
                 return render (request,
                               'membre/membre.html',
@@ -113,12 +124,6 @@ def ajoutemprunt(request, id):
 def modifemprunt(request, id):
     emprunt = get_object_or_404(Emprunt, pk=id)
     membre = emprunt.membre
-    if datetime.now() > emprunt.retour + timedelta(days=7):
-        return render(request,
-                      'emprunts/emprunt.html',
-                      {'emprunts': Emprunt.objects.filter(membre=emprunt.membre.id),
-                       'message': 'Impossible de modifier. Emprunt dépassé de 7 jours.',
-                       'class': 'error'})
     emprunt.delete()
     emprunts = Emprunt.objects.filter(membre=membre.id)
     return render(request, 'emprunts/emprunt.html', {'emprunts': emprunts})
